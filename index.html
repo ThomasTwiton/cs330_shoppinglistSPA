@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <link href="./css/strikethrough.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <title>Shopping List</title>
+    </head>
+    <body>
+        <header>
+            <h1>Shopping List</h1>
+        </header>
+        <div class = container>
+            <div class=panel>
+            <div class = row>
+            <label for=item>Name</label>
+            <input type=text id=item />
+            <label for="quantity">Qty</label>
+            <select name=quantity id=quantity>
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
+                <option value=9>9</option>
+                <option value=10>10</option>
+            </select>
+            <label for="priority">Priority</label>                  
+            <select name=priority id=priority>
+                <option value=High>High</option>
+                <option value=Medium>Medium</option>
+                <option value=Low>Low</option>
+            </select> 
+        </div>
+        <div class=row>           
+            <label for="store">Store</label>
+            <select name=store id=store>
+                <option value=Fareway>Fareway</option>
+                <option value=Walmart>Walmart</option>
+                <option value="Ace Hardware">Ace Hardware</option>
+                <option value="Gas Station">Gas Station</option>
+            </select>
+            <label for="section">Store Section</label>    
+            <select name=section id=section>
+                <option value=Produce>Produce</option>
+                <option value=Dairy>Dairy</option>
+                <option value=Meat>Meat</option>
+                <option value=Tolietries>Tolietries</option>
+            </select>              
+             
+        </div> 
+        <div class =row>
+        <label for="price">Price</label>
+        <input type=text id="price" />     
+        <button onclick="onClick()" class="btn btn-primary" id=addbutt>Add</button> 
+        </div>
+        </div>            
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Store</th>
+                        <th>Section</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id=list>
+        
+                </tbody>
+            </table>
+        </div>       
+    </div>
+        <script src="./js/model.js" type=text/javascript></script>
+        <script src="./js/view.js" type=text/javascript></script>
+        <script src="./js/controller.js" type=text/javascript></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </body>
+
+
+</html>

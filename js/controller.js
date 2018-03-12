@@ -27,7 +27,7 @@ function restoreList(savedlist){
     itemdict = JSON.parse(savedlist)
     for(let i = 0; i < itemdict.length; i++){
         item = itemdict[i]
-        restoreditem = new Item(item._name, item._qty, item._priority, item._store, item._section, item._price)
+        restoreditem = new Item(item._name, item._qty, item._priority, item._store, item._section, item._price, item._stillchecked)
         myshoppinglist._items.push(restoreditem)
         redrawTable(myshoppinglist, "initialize")
     }

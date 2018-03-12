@@ -97,14 +97,14 @@ class ShoppingList extends Subject{
 }
 
 class Item{
-    constructor(name, qty, priority, store, section, price){
+    constructor(name, qty, priority, store, section, price, bought){
         this._name = name
         this._qty = qty
         this._priority = priority
         this._store = store
         this._section = section
         this._price = price
-        this._bought = false
+        this._bought = bought
         this._stillchecked = false
     }
     get name(){

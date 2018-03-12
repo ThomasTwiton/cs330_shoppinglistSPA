@@ -1,5 +1,7 @@
 myshoppinglist = new ShoppingList()
 myshoppinglist.subscribe(redrawTable)
+savedlist = localStorage.getItem("savedlist")
+restoreList(savedlist)
 
 function onClick() {
     let iteminput = document.querySelector("#item")
@@ -13,6 +15,20 @@ function onClick() {
     myshoppinglist.addItem(myitem)
 }
 
-function onCheck() {
-    myshoppinglist.checkBought()
+function onCheck(check) {
+    myshoppinglist.checkBought(check)
+}
+
+function sort(property) {
+    myshoppinglist.reorderitems(property)
+}
+
+function restoreList(savedlist){
+    itemdict = JSON.parse(savedlist)
+    for(let i = 0; i < itemdict.length; i++){
+        item = itemdict[i]
+        restoreditem = new Item(item._name, item._qty, item._priority, item._store, item._section, item._price)
+        myshoppinglist._items.push(restoreditem)
+        redrawTable(myshoppinglist, "initialize")
+    }
 }

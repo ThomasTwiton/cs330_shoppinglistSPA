@@ -41,8 +41,58 @@ class ShoppingList extends Subject{
         this.publish("newitem_addedto_shoppinglist", this)
     }
 
-    checkBought() {
+    checkBought(check) {
+        this._items[check].bought = !(this._items[check].bought)
         this.publish("somethingbought?", this)
+    }
+
+    reorderitems(property) {
+        this._items.sort(function(a, b){
+            if (property == "name"){
+                if (a.name < b.name){
+                    return -1
+                }
+                if (a.name > b.name){
+                    return 1
+                }
+            }
+
+            if (property =="bought"){
+                if (a.bought == true && b.bought == false){
+                    return 1
+                } if (a.bought == false && b.bought == true){
+                    return -1
+                } else { return 0}
+            }
+
+            if (property=="qty"){
+                return b.qty - a.qty
+            }
+
+            if (property=="store"){
+                if (a.store < b.store){
+                    return -1
+                }
+                if (a.store > b.store){
+                    return 1
+                }
+            }
+
+            if (property=="section"){
+                if (a.section < b.section){
+                    return -1
+                }
+                if (a.section > b.section){
+                    return 1
+                }
+            }
+
+            if (property=="price"){
+                return b.price - a.price
+            }
+        })
+        
+        this.publish("sortby_" + property, this)
     }
 }
 
@@ -55,6 +105,7 @@ class Item{
         this._section = section
         this._price = price
         this._bought = false
+        this._stillchecked = false
     }
     get name(){
         return this._name
@@ -81,5 +132,18 @@ class Item{
 
     set bought(nv){
         this._bought = nv
+    }get bought(){
+        return this._bought
+    }
+
+    set bought(nv){
+        this._bought = nv
+    }
+    get stillchecked(){
+        return this._stillchecked
+    }
+
+    set stillchecked(nv){
+        this._stillchecked = nv
     }
 }

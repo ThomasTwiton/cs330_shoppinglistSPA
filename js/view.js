@@ -1,27 +1,14 @@
-function redrawTable(scope, msg){
+function redrawTable(scope, msg){  
     console.log(msg)
     mytable = document.querySelector("#list")
-    //dealing with checkmarks
-    if(msg == "somethingbought?"){
-        rowarray = mytable.childNodes
-        for(let j=0; j<rowarray.length; j++){
-            if(rowarray[j].childNodes[0].childNodes[0].checked){
-                scope.items[j].bought = true
-            } else{
-                scope.items[j].bought = false
-            }
-        }
-    }    
-
-    //drawing the table    
     mytable.innerHTML = ""
-
+    var todelete = [] 
     for (let i=0; i < scope.items.length; i++){
         let myrow = document.createElement("tr")
         mytable.appendChild(myrow)
 
         let checkbox = document.createElement("td")
-        checkbox.innerHTML = "<input type=checkbox onclick=onCheck() />"
+        checkbox.innerHTML = "<input type=checkbox onclick=onCheck(" + i + ") />"
         myrow.appendChild(checkbox)        
 
         thisitem = scope.items[i]
@@ -39,14 +26,28 @@ function redrawTable(scope, msg){
         } 
         if (thisitem.priority == "Low"){
             myrow.classList.add("success")
-        }         
+        }
+        if (thisitem.stillchecked == true){
+            todelete += i
+        }        
         if(thisitem.bought == true){
             myrow.classList += " strikeout"
             checkbox.childNodes[0].checked = true
+            thisitem.stillchecked = true
         } else{
             let klass = myrow.classList
             myrow.classList = klass[0]
             checkbox.childNodes[0].checked = false
-        }        
+            thisitem.stillchecked = false
+        }                    
     }
+    for(let i = todelete.length; i>-1; i--){
+        if(todelete.includes(i)){
+            //delete scope.items[i]
+        }
+    }
+    todelete = []
+
+    memory = JSON.stringify(scope._items)
+    localStorage.setItem("savedlist", memory)
 }

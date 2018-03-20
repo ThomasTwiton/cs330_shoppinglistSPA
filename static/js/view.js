@@ -38,7 +38,16 @@ function redrawTable(scope, msg){
             checkbox.childNodes[0].checked = false
         }                    
     }
-    
-    memory = JSON.stringify(scope._items)
-    localStorage.setItem("savedlist", memory)
+    //localStorage.setItem("savedlist", memory)
+    config = {}
+    config.method = "POST"
+    config.body = JSON.stringify(scope._items)
+    config.headers = {"Content-Type":"application/json", "Accept" : "application/json"}
+    fetch("http://127.0.0.1:5001/savelist", config)
+    .then(function(response){return response.status})
+    .then(function(status){
+        if(status != 200){
+            alert("List not saved!")
+        }
+    })
 }

@@ -1,7 +1,14 @@
 myshoppinglist = new ShoppingList()
 myshoppinglist.subscribe(redrawTable)
-savedlist = localStorage.getItem("savedlist")
-restoreList(savedlist)
+//savedlist = localStorage.getItem("savedlist")
+fetch('http://127.0.0.1:5001/getlist')
+.then(function(response){return response.text()})
+.then(function(text){
+    console.log(text)
+    let list_torestore = JSON.parse(text)
+    console.log(list_torestore)
+    restoreList(list_torestore)
+})
 
 function onClick() {
     let iteminput = document.querySelector("#item")
@@ -24,10 +31,12 @@ function sort(property) {
 }
 
 function restoreList(savedlist){
-    if(savedlist != null){
+    if(savedlist != null){        
         itemdict = JSON.parse(savedlist)
+        console.log(itemdict)
         for(let i = 0; i < itemdict.length; i++){
             item = itemdict[i]
+            console.log(item)
             restoreditem = new Item(item._name, item._qty, item._priority, item._store, item._section, item._price, item._bought)
             myshoppinglist._items.push(restoreditem)
             redrawTable(myshoppinglist, "initialize")

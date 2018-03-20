@@ -105,7 +105,6 @@ class Item{
         this._section = section
         this._price = price
         this._bought = bought
-        this._stillchecked = false
     }
     get name(){
         return this._name
@@ -138,12 +137,5 @@ class Item{
 
     set bought(nv){
         this._bought = nv
-    }
-    get stillchecked(){
-        return this._stillchecked
-    }
-
-    set stillchecked(nv){
-        this._stillchecked = nv
     }
 }

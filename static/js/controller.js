@@ -31,7 +31,7 @@ function sort(property) {
 }
 
 function restoreList(savedlist){
-    if(savedlist != null){        
+    if(savedlist != null)        
         itemdict = JSON.parse(savedlist)
         console.log(itemdict)
         for(let i = 0; i < itemdict.length; i++){
@@ -42,5 +42,3 @@ function restoreList(savedlist){
             redrawTable(myshoppinglist, "initialize")
         }
     }
-    
-}
